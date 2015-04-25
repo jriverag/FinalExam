@@ -35,10 +35,10 @@ function MenuSelect()
     }
 }
 
-function ListCustomers()
+function ListCat()
 {
     var xmlhttp = new XMLHttpRequest();
-    var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/getAllCustomers";
+    var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/getAllCategories";
              
     xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -51,10 +51,11 @@ function ListCustomers()
             
     function GenerateOutput(result)
     {
-        var display = "<table><tr><th>City</th><th>Company Name</th><th>Customer ID</th></tr>";
+        var display = "<table><tr><th>Category ID</th><th>Category Name</th><th>Category Description</th></tr>";
         var count = 0;
         var rowid = "oddrow";
-        for(count = 0; count < result.GetAllCustomersResult.length; count ++)
+       
+        for(count = 0; count < result.GetAllCategoriesResult.length; count ++)
         {
             if (count%2 == 0)
             {
@@ -64,24 +65,24 @@ function ListCustomers()
             {
                 rowid = "oddrow";
             }
-            display += "<tr id=" + rowid + "><td>" + result.GetAllCustomersResult[count].City + "</td><td>" + result.GetAllCustomersResult[count].CompanyName + "</td><td>" + result.GetAllCustomersResult[count].CustomerID + "</td></tr>";
+            display += "<tr id=" + rowid + "><td>" + result.GetAllCategoriesResult[count].CID + "</td><td>" + result.GetAllCategoriesResult[count].CName + "</td><td>" + result.GetAllCategoriesResult[count].CDescription + "</td></tr>";
         }
         display += "</table>";
-        document.getElementById("listcustomers").innerHTML = display;
+        document.getElementById("listcat").innerHTML = display;
         }
 }
         
-function CreateCustomer()
+function CreateCat()
 {
     var objajax = new XMLHttpRequest();
-    var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/CreateCustomer";
+    var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/CreateCategory";
     //customer data from web page
-    var customerid = document.getElementById("custid").value;
-    var customername = document.getElementById("custname").value;
-    var customercity = document.getElementById("custcity").value;
-    var objdisplay = document.getElementById("result");
+    var cname = document.getElementById("catname").value;
+    var cdescription = document.getElementById("catdesc").value;
+    
     //Create parameter string
-    var newcustomer = '{"CustomerID":"' + customerid + '","CompanyName":"' + customername + '","City":"' + customercity + '"}';
+    var newcustomer = '{"CName":"' + cname + '","CDescription":"' + cdescription + '"}';
+    var objdisplay = document.getElementById("result");
     
     //Checking for AJAX operation return
     objajax.onreadystatechange = function()
@@ -119,28 +120,21 @@ function OperationResult(success, exception, displayObject)
         default:
             alert("The operation code returned is not identifiable.");
     }
-    //if (success == 1)
-    //{
-    //    displayObject.innerHTML = "The operation was successful!";
-    //}
-    //else
-    //{
-    //    displayObject.innerHTML = "The operation was not successful:<br>" + exception;
-    //}
 }
 
-function DeleteCustomer()
+
+function DeleteCategory()
        {
             var xmlhttp = new XMLHttpRequest();
-            var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/deleteCustomer/";
+            var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/deleteCategory/";
             url += document.getElementById("deleteid").value;
             var objdisplay = document.getElementById("deleteresult");
                         
             xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     var output = JSON.parse(xmlhttp.responseText);
-                    var outcome = output.DeleteCustomerResult.WasSuccessful
-                    var error = output.DeleteCustomerResult.Exception;
+                    var outcome = output.DeleteCategoryResult.WasSuccessful
+                    var error = output.DeleteCategoryResult.Exception;
                     OperationResult(outcome, error, objdisplay);
                 }
             }
@@ -148,96 +142,25 @@ function DeleteCustomer()
             xmlhttp.send();
         }
         
-function History()
-            {
-            var xmlhttp = new XMLHttpRequest();
-            var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/getCustomerOrderHistory/";
-            url += document.getElementById("historyid").value;
-                        
-            xmlhttp.onreadystatechange = function() {
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    var output = JSON.parse(xmlhttp.responseText);
-                    GenerateOutput(output);
-                }
-            }
-            xmlhttp.open("GET", url, true);
-            xmlhttp.send();
-            
-            function GenerateOutput(result)
-            {
-            var display = "<table><tr><th>Product Name</th><th>Total</th></tr>";
-            var count = 0;
-            for(count = 0; count < result.length; count ++)
-            {
-                if (count%2 == 0)
-                {
-                    rowid = "evenrow";
-                }
-                else
-                {
-                    rowid = "oddrow";
-                }
-                display += "<tr id=" + rowid + "><td>" + result[count].ProductName + "</td><td>" + result[count].Total + "</td></tr>";
-            }
-            display += "</table>";
-            document.getElementById("custhist").innerHTML = display;
-            }
-        }
-        
-function Orders()
-    {
-        var xmlhttp = new XMLHttpRequest();
-            var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/getOrdersForCustomer/";
-            url += document.getElementById("orderid").value;
-                        
-            xmlhttp.onreadystatechange = function() {
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    var output = JSON.parse(xmlhttp.responseText);
-                    GenerateOutput(output);
-                }
-            }
-            xmlhttp.open("GET", url, true);
-            xmlhttp.send();
-            
-            function GenerateOutput(result)
-            {
-            var display = "<table><tr><th>Order Date</th><th>Order ID</th><th>Ship Address</th><th>Ship City</th><th>Ship Name</th><th>Ship Post Code</th><th>Shipped Date</th></tr>";
-            var count = 0;
-            for(count = 0; count < result.GetOrdersForCustomerResult.length; count ++)
-            {
-                if (count%2 == 0)
-                {
-                    rowid = "evenrow";
-                }
-                else
-                {
-                    rowid = "oddrow";
-                }
-                display += "<tr id=" + rowid + "><td>" + result.GetOrdersForCustomerResult[count].OrderDate + "</td><td>" + result.GetOrdersForCustomerResult[count].OrderID + "</td><td>" + result.GetOrdersForCustomerResult[count].ShipAddress + "</td><td>" + result.GetOrdersForCustomerResult[count].ShipCity + "</td><td>" + result.GetOrdersForCustomerResult[count].ShipName + "</td><td>" + result.GetOrdersForCustomerResult[count].ShipPostcode + "</td><td>" + result.GetOrdersForCustomerResult[count].ShippedDate + "</td></tr>";
-            }
-            display += "</table>";
-            document.getElementById("orderlist").innerHTML = display;
-            }
-    }
+
     
-function AddressUpdate()
+function CatUpdate()
     {
         var xmlhttp = new XMLHttpRequest();
         var objdisplay = document.getElementById("changeresult");
         xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    var output = JSON.parse(xmlhttp.responseText);
-                    OperationResult(output, "", objdisplay);
+                    var result = JSON.parse(xmlhttp.responseText);
+                    var outcome = result.WasSuccessful
+                    var error = result.Exception;
+                    OperationResult(outcome, error, objdisplay);
                 }
         }    
-        var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/updateOrderAddress";
-        var orderid = Number(document.getElementById("orderID").value);
-        var shipname = document.getElementById("shipName").value;
-        var shipaddress = document.getElementById("shipAddress").value;
-        var shipcity = document.getElementById("shipCity").value;
-        var shippostcode = document.getElementById("shipPostcode").value;
-        
-        var parameters = '{"OrderID":' + orderid + ',"ShipName":"' + shipname + '","ShipAddress":"' + shipaddress + '","ShipCity":"' + shipcity + '","ShipPostcode":"' + shippostcode + '"}';
+        var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/updateCatDescription";
+        var cid = Number(document.getElementById("catID").value);
+        var cdescription = document.getElementById("catdescription").value;
+                
+        var parameters = '{"CID":' + cid + ',"CDescription":"' + cdescription + '"}';
                 
         xmlhttp.open("POST", url, true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
