@@ -1,0 +1,33 @@
+body {font-family: sans-serif; height: auto; width: 100%; background-color: #FFFFCC;}
+
+h1 {text-align: center;}
+
+h3 {text-align: center;}
+
+img {float: left; height: 25%; width: 25%; box-shadow: 10px 10px 5px 5px;}
+
+#menu {background-color: #F0F0F0; visibility: visible;}
+
+#about {background-color: #FFFFFF; overflow: scroll; visibility: hidden; position: absolute; height: 75%; width: 100%; }
+
+#add {background-color: #CCFFFF; overflow: scroll; visibility: hidden; position: absolute; height: 75%; width: 100%;}
+
+#change {background-color: #FFFF99; overflow: scroll; visibility: hidden; position: absolute; height: 75%; width: 100%;}
+
+#delete {background-color: #FFFF66; overflow: scroll; visibility: hidden; position: absolute; height: 75%; width: 100%;}
+
+#list {background-color: #FFCC99; overflow: scroll; visibility: hidden; position: absolute; height: 75%; width: 100%;}
+
+#history {background-color: #FFCC99; overflow: scroll; visibility: hidden; position: absolute; height: 75%; width: 100%;}
+
+#orders {background-color: #FFCC99; overflow: scroll; visibility: hidden; position: absolute; height: 75%; width: 100%;}
+
+table {border: inset; padding: 10px; background-color: white; overflow: scroll;}
+
+#oddrow {background-color: #FFFFCC;}
+
+#evenrow {background-color: #99FF99;}
+
+.warning {color: red;}
+
+.caption {text-align: right;}

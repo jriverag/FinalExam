@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Demostration Application</title>
+    <link rel="stylesheet" type="text/css" href="styles/demostyle.css" />
+    <script src="js/demoscripts.js"></script>
+</head>
+
+<body>
+    <h1>IS 633 and 491 Final Exam Application</h1>
+    <hr>
+    <section id="menu">
+        <select onchange="MenuSelect()" id="menuitems">
+            <option>Please Select an Item</option>
+            <option>About</option>
+            <option>List Categories</option>
+            <option>Change a Category</option>
+            <option>Add a Category</option>
+            <option>Delete a Category</option>
+        </select>
+        <hr>
+    </section>
+    <section id="about">
+        <h3>Final Exam</h3>
+        <p>This is a demonstration application for the IS 633 & IS 491 class.</p>
+        <br>
+        <img src="images/SKC.jpg">
+    </section>
+    <section id="list">
+       <h3>List Categories</h3>
+        <button onclick="ListCat()">List Categories</button>
+        <hr>
+        <p id="listcat">Category List</p>
+    </section>
+    <section id="add">
+         <h3>Add a Category</h3>
+        <br>
+        <table><tr><th>New Category Data</th></tr>
+        <tr><td class="caption">Please enter the Category Name:</td>
+        <td><input type="text" id="catname"></td>
+        <tr>
+        <td class="caption">Please enter the Category Description: </td>
+        <td><input type="text" id="catdesc"></td>
+        </tr>
+        <tr>
+        <td><button onclick="CreateCat()">Add a New Category</button></td>
+        </tr>
+        </table>    
+        <label id="result">The result will display here.</label>
+    </section>
+    <section id="change">
+        <h3>Change a Category Description</h3>
+        <hr>
+        <table>
+            <tr>
+                <td class="caption">
+                    <label>Category ID</label>
+                </td>
+                <td>
+                    <input type="number" id="catID">
+                </td>
+            </tr>
+            <tr>
+                <td class="caption">
+                    <label>Category Description</label>
+                </td>
+                <td>
+                    <input type="text" id="catdescription">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button onclick="CatUpdate()" id="update">Update Category Description</button>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <label id="changeresult">The operation's result will display here.</label>
+    </section>
+    <section id="delete">
+       <h3>Delete a Customer</h3>
+        <br>
+        <table>
+            <tr>
+                <td class="caption">
+                    Please enter the Category ID for the Category you wish to delete:
+                </td>
+                <td>
+                    <input type="text" id="deleteid">
+                </td>
+            </tr>
+            <tr>
+                <td class="warning">
+                    Deletion is a final action and will permanently delete a customer's data!
+                </td>
+                <td>
+                    <button onclick="DeleteCategory()">Delete Category</button>
+                </td>
+            </tr>
+        </table>
+        <label id="deleteresult">The result will display here.</label>
+
+
+
+</body>
+</html>
