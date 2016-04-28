@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "edu.uab.business.studentapp"
+        versionCode = "1" 
+        version     = "0.0.1" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Mobile App Final Exam</name>
+
+    <description>
+        Mobile App Final Exam 
+    </description>
+
+    <author>
+        Julio C. Rivera 
+    </author>
+    
+    <icon src="images/SevenStrong.png" />
+    
+    <preference name="phonegap-version" value="cli-5.2.0" />
+
+</widget>
