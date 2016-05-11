@@ -21,5 +21,7 @@
     <icon src="images/SevenStrong.png" />
     
     <preference name="phonegap-version" value="cli-5.2.0" />
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+    <access origin="*" />
 
 </widget>
