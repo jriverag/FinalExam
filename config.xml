@@ -20,7 +20,7 @@
     
     <icon src="images/SevenStrong.png" />
     
-    <preference name="phonegap-version" value="cli-5.2.0" />
+    <preference name="phonegap-version" value="cli-6.5.0" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <access origin="*" />
 
