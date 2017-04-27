@@ -38,7 +38,7 @@ function MenuSelect()
 function ListCat()
 {
     var xmlhttp = new XMLHttpRequest();
-    var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/getAllCategories";
+    var url = "https://student.business.uab.edu/jsonwebservice/service1.svc/getAllCategories";
              
     xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -75,7 +75,7 @@ function ListCat()
 function CreateCat()
 {
     var objajax = new XMLHttpRequest();
-    var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/CreateCategory";
+    var url = "https://student.business.uab.edu/jsonwebservice/service1.svc/CreateCategory";
     //customer data from web page
     var cname = document.getElementById("catname").value;
     var cdescription = document.getElementById("catdesc").value;
@@ -126,7 +126,7 @@ function OperationResult(success, exception, displayObject)
 function DeleteCategory()
        {
             var xmlhttp = new XMLHttpRequest();
-            var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/deleteCategory/";
+            var url = "https://student.business.uab.edu/jsonwebservice/service1.svc/deleteCategory/";
             url += document.getElementById("deleteid").value;
             var objdisplay = document.getElementById("deleteresult");
                         
@@ -156,7 +156,7 @@ function CatUpdate()
                     OperationResult(outcome, error, objdisplay);
                 }
         }    
-        var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/updateCatDescription";
+        var url = "https://student.business.uab.edu/jsonwebservice/service1.svc/updateCatDescription";
         var cid = Number(document.getElementById("catID").value);
         var cdescription = document.getElementById("catdescription").value;
                 
